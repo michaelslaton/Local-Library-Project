@@ -40,16 +40,7 @@ function getMostPopularBooks(books) {
   const bookList = books.sort((bookA, bookB) =>
     bookA.borrows.length > bookB.borrows.length ? -1 : 1
   );
-  let top5Books = [];
-  for (let i = 0; i < 5; i++) {
-    top5Books.push(
-      (bookList[i] = {
-        name: bookList[i].title,
-        count: bookList[i].borrows.length,
-      })
-    );
-  }
-  return top5Books;
+  return bookList.map((book) => ({ name: book.title, count: book.borrows.length })).slice(0, 5);
 }
 
 function getMostPopularAuthors(books, authors) {
